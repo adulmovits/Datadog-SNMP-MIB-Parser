@@ -1,0 +1,30 @@
+init_config:
+
+instances:
+   - ip_address: <IP>
+     port: 161
+     community_string: <string>
+     tags:
+       - firewall
+     metrics:
+       - OID: 1.3.6.1.4.1.12356.101.4.1.3.0
+         name: CPU_Usage
+       - OID: 1.3.6.1.4.1.12356.101.4.1.4.0
+         name: MEM_Usage
+      - MIB: IF-MIB
+        table: ifTable
+        symbols:
+          - ifInOctets
+          - ifOutOctets
+          - ifHCInOctets
+          - ifHCOutOctets
+          - ifSpeed
+        metric_tags:
+          - tag: interface
+            column: ifDescr  # specify which column to read the tag value from
+      - OID: 1.3.6.1.2.1.25.3.3.1.2.1
+        name: CPUmgmt
+      - OID: 1.3.6.1.2.1.25.3.3.1.2.2
+        name: CPUdata
+      - OID: 1.3.6.1.2.1.99.1.1.1.4.3
+        name: Temp

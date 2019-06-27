@@ -1,0 +1,45 @@
+#Example NetApp specifying MIBs, Tables, and Symbols
+
+init_config:
+  mibs_folder: /opt/dd-agent-mibs
+instances:
+  - ip_address: <YOUR IP>
+    user: datadog
+    tags:
+      - role:storage-device
+      - sys:storage
+      - team:team_name
+      - availability-zone:netapp1
+    metrics:
+      - MIB: NETAPP-MIB
+        symbol: aggrNumber
+      - MIB: NETAPP-MIB
+        symbol: cpuBusyTimePerCent
+      - MIB: NETAPP-MIB
+        symbol: cpuCount
+      - MIB: NETAPP-MIB
+        symbol: cpuIdleTimePerCent
+      - MIB: NETAPP-MIB
+        table: haTable
+        symbols:
+          - haInterconnectStatus
+          - haNodeSysid
+          - haPartnerStatus
+          - haState
+          - haSettings
+        metric_tags:
+          - tag: node
+            column: haNodeName
+      - MIB: NETAPP-MIB
+        table: nodeTable
+        symbols:
+          - nodeEnvOverTemperature
+          - nodeNvramBatteryStatus
+        metric_tags:
+          - tag: node
+            column: haNodeName
+      - MIB: NETAPP-MIB
+        symbol: spareNumber
+      - MIB: NETAPP-MIB
+        symbol: volNumber
+
