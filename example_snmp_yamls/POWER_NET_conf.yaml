@@ -1,0 +1,29 @@
+#Example PowerNet
+
+init_config:
+  mibs_folder: /opt/dd-agent-mibs
+instances:
+  - ip_address: <YOUR IP>
+    user: datadog
+    tags:
+      - role:pdu
+      - sys:power
+      - team:team_name
+      - availability-zone:loc_x
+    metrics:
+      - MIB: PowerNet-MIB
+        symbol: rPDUPowerSupply1Status
+      - MIB: PowerNet-MIB
+        symbol: rPDUPowerSupply2Status
+      - MIB: PowerNet-MIB
+        table: emsProbeConfigTable
+        symbols:
+          - emsProbeConfigProbeMaxTempThresh
+          - emsProbeConfigProbeMinTempThresh
+          - emsProbeConfigProbeHighHumidityThresh
+          - emsProbeConfigProbeLowHumidityThresh
+          - emsProbeConfigProbeMaxHumidityThresh
+          - emsProbeConfigProbeMinHumidityThresh
+        metric_tags:
+          - tag: probe
+            column: emsProbeConfigProbeIndex
