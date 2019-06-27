@@ -1,7 +1,6 @@
 init_config:
 
 instances:
-
    - ip_address: <IP>
      port: 161
      community_string: <string>
